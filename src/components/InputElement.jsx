@@ -1,6 +1,9 @@
-import React from "react";
-
-export const InputElement = ({typeElement, idElement, dataValue, precarga }) => {
+export const InputElement = ({
+  typeElement,
+  idElement,
+  dataValue,
+  precarga,
+}) => {
   return (
     <input
       type={typeElement}

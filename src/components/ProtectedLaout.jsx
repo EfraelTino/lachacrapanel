@@ -6,19 +6,30 @@ import Sidebar from "./Sidebar";
 
 export const ProtectedLayout = ({ children }) => {
   const { user } = userAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   if (!user) {
     return <Navigate to="/" />;
   }
+
   return (
     <div className=" h-full">
       <div className="flex h-full overflow-hidden">
-        <Sidebar  sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} className= {sidebarOpen ? `w-0` : `w`}/>
-        <div className={`relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden ${ sidebarOpen ? 'w-full':''}` }>
+        <Sidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          className={sidebarOpen ? `w-0` : `w`}
+        />
+        <div
+          className={`relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden ${
+            sidebarOpen ? "w-full" : ""
+          }`}
+        >
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main>
-            <div className={`mx-auto max-w-screen-2xl p-4 md:p-6 sm:mb-0 mb-32` }>
+            <div
+              className={`mx-auto max-w-screen-2xl p-4 md:p-6 sm:mb-0 mb-32`}
+            >
               <Outlet /> {/* Renderiza las rutas anidadas */}
               {children}
             </div>
