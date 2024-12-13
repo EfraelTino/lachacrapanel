@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   AiFillExperiment,
@@ -46,7 +46,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     };
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
-  });
+  }, []);
 
   return (
     <aside
@@ -57,7 +57,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className=" hidden sm:flex items-center justify-between gap-2 px-6 py-5.5  sm:py-6.5">
-        <NavLink to="/" className="hidden sm:flex">
+        <NavLink to="/panel" className="hidden sm:flex">
           <img
             src="https://aniversariohero.com/hero/images/herotenyears.png"
             alt="Logo"
@@ -98,108 +98,107 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             </h3>
             <ul className="sm:mb-6 grid grid-cols-2 sm:flex sm:flex-col gap-1.5">
               {/* <!-- Menu Item Calendar --> */}
-                <>
-               
-                  <li>
-                    <NavLink
-                      to="/panel"
-                      className={`group relative flex flex-col justify-center sm:flex-row sm:justify-normal items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname === "/panel" && "bg-graydark"
-                      }`}
-                    >
-                      <AiFillHome className="text-2xl" />
-                      <span className="sm:text-xl">Principal</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/seo"
-                      className={`group relative flex flex-col justify-center sm:flex-row sm:justify-normal items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname === "/seo" && "bg-graydark"
-                      }`}
-                    >
-                      <SiEbox className="text-2xl" />
-                      <span className="sm:text-xl">SEO</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="videos"
-                      className={`group relative flex flex-col justify-center sm:flex-row sm:justify-normal items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("videos") && "bg-graydark "
-                      }`}
-                    >
-                      <AiFillPlayCircle className="text-2xl" />
-                      <span className="sm:text-xl">Imagina & videos</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="experiencia"
-                      className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("experiencia") && "bg-graydark "
-                      }`}
-                    >
-                      <AiOutlineGlobal className="text-2xl" />
-                      <span className="sm:text-xl">Experiencia</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="comunidad"
-                      className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("comunidad") && "bg-graydark "
-                      }`}
-                    >
-                      <AiOutlineUserSwitch className="text-2xl" />
-                      <span className="sm:text-xl">Comunidad</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="talleres"
-                      className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("talleres") && "bg-graydark "
-                      }`}
-                    >
-                      <AiFillExperiment className="text-2xl" />
-                      <span className="sm:text-xl">Talleres</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="mision"
-                      className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("mision") && "bg-graydark "
-                      }`}
-                    >
-                      <AiFillEye className="text-2xl" />
-                      <span className="sm:text-xl">Misón</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="vision"
-                      className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("vision") && "bg-graydark "
-                      }`}
-                    >
-                      <SiActivision className="text-2xl" />
-                      <span className="sm:text-xl">Visión</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="vision"
-                      className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                        pathname.includes("vision") && "bg-graydark "
-                      }`}
-                    >
-                      <AiOutlineSwapLeft className="text-2xl" />
-                      <span className="sm:text-xl">Venta de entradas</span>
-                    </NavLink>
-                  </li>
-                </>
+              <>
+                <li>
+                  <NavLink
+                    to="principal"
+                    className={`group relative flex flex-col justify-center sm:flex-row sm:justify-normal items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname === "/principal" && "bg-graydark"
+                    }`}
+                  >
+                    <AiFillHome className="text-2xl" />
+                    <span className="sm:text-xl">Principal</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="seo"
+                    className={`group relative flex flex-col justify-center sm:flex-row sm:justify-normal items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname === "/seo" && "bg-graydark"
+                    }`}
+                  >
+                    <SiEbox className="text-2xl" />
+                    <span className="sm:text-xl">SEO</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="videos"
+                    className={`group relative flex flex-col justify-center sm:flex-row sm:justify-normal items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("videos") && "bg-graydark "
+                    }`}
+                  >
+                    <AiFillPlayCircle className="text-2xl" />
+                    <span className="sm:text-xl">Imagina & videos</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="experiencia"
+                    className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("experiencia") && "bg-graydark "
+                    }`}
+                  >
+                    <AiOutlineGlobal className="text-2xl" />
+                    <span className="sm:text-xl">Experiencia</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="comunidad"
+                    className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("comunidad") && "bg-graydark "
+                    }`}
+                  >
+                    <AiOutlineUserSwitch className="text-2xl" />
+                    <span className="sm:text-xl">Comunidad</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="talleres"
+                    className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("talleres") && "bg-graydark "
+                    }`}
+                  >
+                    <AiFillExperiment className="text-2xl" />
+                    <span className="sm:text-xl">Talleres</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="mision"
+                    className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("mision") && "bg-graydark "
+                    }`}
+                  >
+                    <AiFillEye className="text-2xl" />
+                    <span className="sm:text-xl">Misión</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="vision"
+                    className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("vision") && "bg-graydark "
+                    }`}
+                  >
+                    <SiActivision className="text-2xl" />
+                    <span className="sm:text-xl">Visión</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="venta-entradas"
+                    className={`group relative flex flex-col justify-center items-center  sm:flex-row sm:justify-normal gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                      pathname.includes("vision") && "bg-graydark "
+                    }`}
+                  >
+                    <AiOutlineSwapLeft className="text-2xl" />
+                    <span className="sm:text-xl">Venta de entradas</span>
+                  </NavLink>
+                </li>
+              </>
             </ul>
           </div>
         </nav>
